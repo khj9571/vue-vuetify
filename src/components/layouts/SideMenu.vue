@@ -14,8 +14,15 @@
           <v-icon v-else>{{ files[item.file] }}</v-icon>
         </template>
         <template v-slot:label="{ item, open ,leaf }">
-          <router-link v-if="leaf" to="/">{{item.name}}</router-link>
-          <span v-else>{{item.name}}</span>
+          <!-- <router-link v-if="leaf">{{item.name}}</router-link>
+          <span v-else>{{item.name}}</span> -->
+          
+          <span v-if="leaf">
+               123
+          </span>
+          <span v-else>
+                 456
+          </span>
         </template>
       </v-treeview>
     </v-layout>
@@ -30,7 +37,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   components: {}
 })
 export default class SideMenu extends Vue {
-  open = ["public"];
+  open = ["메뉴3","메뉴3-1"];
   files = {
     html: "mdi-language-html5",
     js: "mdi-nodejs",
@@ -44,55 +51,57 @@ export default class SideMenu extends Vue {
   tree = [];
   items = [
     {
-      name: ".git"
+      name: "Home",
+      router:'/'
     },
     {
-      name: "node_modules"
+      name: "About",
+      router:'/about'
     },
     {
-      name: "public",
+      name: "메뉴3",
       children: [
         {
-          name: "static",
+          name: "메뉴3-1",
           children: [
             {
-              name: "logo.png",
+              name: "메뉴3-1-1",
               file: "png"
             }
           ]
         },
         {
-          name: "favicon.ico",
+          name: "메뉴3-2",
           file: "png"
         },
         {
-          name: "index.html",
+          name: "메뉴3-3",
           file: "html"
         }
       ]
     },
     {
-      name: ".gitignore",
+      name: "메뉴4",
       file: "txt"
     },
     {
-      name: "babel.config.js",
+      name: "메뉴5",
       file: "js"
     },
     {
-      name: "package.json",
+      name: "메뉴6",
       file: "json"
     },
     {
-      name: "README.md",
+      name: "메뉴7",
       file: "md"
     },
     {
-      name: "vue.config.js",
+      name: "메뉴8",
       file: "js"
     },
     {
-      name: "yarn.lock",
+      name: "메뉴9",
       file: "txt"
     }
   ];
