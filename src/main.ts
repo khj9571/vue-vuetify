@@ -5,7 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 
 
-import GloblePlugin from './plugins/globle'
+import GloblePlugin from './plugins/global'
 
 
 

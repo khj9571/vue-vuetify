@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import axios from 'axios'
+import {loadingEvents} from '@/events/Events'
 
 declare module 'vue/types/vue' {
     interface Vue {
-        $restApiService: null;
+        $restApiService: HttpService;
     }
 }
 
@@ -29,9 +30,16 @@ interface AbstractApi {
 }
 
 class HttpService implements AbstractApi {
-    get(url: string, params: any, headers: any, useLoading: boolean): Promise<any> {
+
+
+    get(url: string, params: any ={}, headers: any ={}, useLoading: boolean = true): Promise<any> {
+
+        if(useLoading) LoadingManager.show();
+
         return Vue.axios.get(url, { params: params, headers: headers }).then((response) => {
             // console.log(response.data);
+
+            
             return new Promise(function (resolve, reject) {
                // serviceResLog(url,response);
                 if (response.data) {
@@ -50,7 +58,8 @@ class HttpService implements AbstractApi {
             if (useLoading) {
                 setTimeout(() => {
                 //    this.loading.hide();
-                }, 500);
+                LoadingManager.hide();
+                }, 3000);
             }
 
             setTimeout(() => {
@@ -92,6 +101,18 @@ class HttpService implements AbstractApi {
 }
 
 
+class LoadingManager {
+
+    static show() {
+        loadingEvents.$emit('show')
+    }
+
+    static hide() {
+        loadingEvents.$emit('hide');
+    }
+
+}
+
 
 
 
@@ -105,6 +126,8 @@ GloblePlugin.install = function (Vue: any, options: any) {
     // Vue.prototype.$restApiService = restApiService;
 
     Vue.$myGlobal = 'abc';
+
+    Vue.prototype.$restApiService = new HttpService();
 }
 
 export default GloblePlugin

@@ -14,15 +14,15 @@
           <v-icon v-else>{{ files[item.file] }}</v-icon>
         </template>
         <template v-slot:label="{ item, open ,leaf }">
-          <!-- <router-link v-if="leaf">{{item.name}}</router-link>
-          <span v-else>{{item.name}}</span> -->
-          
-          <span v-if="leaf">
-               123
+          <router-link v-if="leaf" :to="{ name: item.router, params: { userId: 123 }}">{{item.name}}</router-link>
+          <span v-else>{{item.name}}</span>
+
+          <!-- <span v-if="leaf">
+               <router-link v-if="leaf">{{item.name}}</router-link>
           </span>
           <span v-else>
-                 456
-          </span>
+              {{item.name}}
+          </span>-->
         </template>
       </v-treeview>
     </v-layout>
@@ -37,7 +37,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   components: {}
 })
 export default class SideMenu extends Vue {
-  open = ["메뉴3","메뉴3-1"];
+  open = ["컴포넌트", "Events"];
   files = {
     html: "mdi-language-html5",
     js: "mdi-nodejs",
@@ -52,57 +52,68 @@ export default class SideMenu extends Vue {
   items = [
     {
       name: "Home",
-      router:'/'
+      router: "home"
     },
     {
       name: "About",
-      router:'/about'
+      router: "about"
     },
     {
-      name: "메뉴3",
+      name: "컴포넌트",
+      router: "",
       children: [
         {
-          name: "메뉴3-1",
+          name: "Events",
+          router: "",
           children: [
             {
-              name: "메뉴3-1-1",
-              file: "png"
+              name: "LoadingEvent",
+              file: "png",
+              router: "loadingEvent"
             }
           ]
         },
         {
-          name: "메뉴3-2",
-          file: "png"
+          name: "Api Exam",
+          file: "png",
+          router: "api"
         },
         {
           name: "메뉴3-3",
-          file: "html"
+          file: "html",
+          router: ""
         }
       ]
     },
     {
       name: "메뉴4",
-      file: "txt"
+      file: "txt",
+      router: ""
     },
     {
       name: "메뉴5",
-      file: "js"
+      file: "js",
+      router: ""
     },
     {
       name: "메뉴6",
-      file: "json"
+      file: "json",
+      router: ""
     },
     {
       name: "메뉴7",
-      file: "md"
+      file: "md",
+      router: ""
     },
     {
       name: "메뉴8",
-      file: "js"
+      file: "js",
+      router: ""
     },
     {
       name: "메뉴9",
-      file: "txt"
+      file: "txt",
+      router: ""
     }
   ];
 }
