@@ -49,13 +49,13 @@ export default class Loading extends Vue {
     // this.show = val;
 
      console.log(val)
-    // if(val) {    
-    //    setTimeout(() => {
-    //      this.show = false;
-    //     // this.visible = false;
-    //    }, 5000);
+    if(val) {    
+       setTimeout(() => {
+         this.show = false;
+        // this.visible = false;
+       }, 5000);
 
-    // }
+    }
   }
 
   mounted() {}

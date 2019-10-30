@@ -74,31 +74,53 @@ export default class SideMenu extends Vue {
           ]
         },
         {
+          name: "Table",
+          router: "",
+          children: [
+            {
+              name: "Data Iterator",
+              file: "png",
+              router: "dataIterators"
+            },
+            {
+              name: "Simple Table",
+              file: "png",
+              router: "simpleTables"
+            },
+            {
+              name: "Data Table",
+              file: "png",
+              router: "dataTables"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: "Example",
+      router: "",
+      children: [
+        {
           name: "Api Exam",
           file: "png",
           router: "api"
         },
         {
-          name: "메뉴3-3",
-          file: "html",
-          router: ""
+          name: "Filter",
+          file: "txt",
+          router: "filter"
+        },
+        {
+          name: "Directive",
+          file: "js",
+          router: "directive"
+        },
+        {
+          name: "Store",
+          file: "json",
+          router: "store"
         }
       ]
-    },
-    {
-      name: "Filter",
-      file: "txt",
-      router: "filter"
-    },
-    {
-      name: "Directive",
-      file: "js",
-      router: "directive"
-    },
-    {
-      name: "메뉴6",
-      file: "json",
-      router: ""
     },
     {
       name: "메뉴7",
