@@ -2,6 +2,10 @@ import Vue from 'vue'
 import axios from 'axios'
 import {loadingEvents} from '@/events/Events'
 
+import * as filters from '@/filters' // global filters
+import * as directives from '@/directives'
+
+
 declare module 'vue/types/vue' {
     interface Vue {
         $restApiService: HttpService;
@@ -124,6 +128,19 @@ GloblePlugin.install = function (Vue: any, options: any) {
     //console.log(Vue.axios)
 
     // Vue.prototype.$restApiService = restApiService;
+
+    let fi: any = filters;
+    Object.keys(filters).forEach(key => {
+      Vue.filter(key, fi[key]);
+    });
+
+    let dir :any = directives;
+    Object.keys(directives).forEach(key => {
+       Vue.directive(key,dir[key]);
+    });
+  
+
+
 
     Vue.$myGlobal = 'abc';
 

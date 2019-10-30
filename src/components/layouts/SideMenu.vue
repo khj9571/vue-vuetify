@@ -86,14 +86,14 @@ export default class SideMenu extends Vue {
       ]
     },
     {
-      name: "메뉴4",
+      name: "Filter",
       file: "txt",
-      router: ""
+      router: "filter"
     },
     {
-      name: "메뉴5",
+      name: "Directive",
       file: "js",
-      router: ""
+      router: "directive"
     },
     {
       name: "메뉴6",
