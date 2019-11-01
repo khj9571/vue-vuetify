@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 
 
 import GloblePlugin from './plugins/global'
-
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 
 /*********************************************************
@@ -30,7 +30,12 @@ import $ from 'jquery';
  * moment
  *********************************************************/
 
-Vue.use(require('vue-moment'))
+Vue.use(require('vue-moment'));
+
+
+// import VuetifyDaterangePicker from "vuetify-daterange-picker";
+// import "vuetify-daterange-picker/dist/vuetify-daterange-picker.css";
+// Vue.use(VuetifyDaterangePicker as any);
 
 
 Vue.use(GloblePlugin);

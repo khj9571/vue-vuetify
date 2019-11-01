@@ -56,7 +56,11 @@ export default new Router({
               component: () => import(/* webpackChunkName: "about" */ './views/components/table/DataTables.vue')
             }
           ]
-        }
+        },
+        {
+          path: 'dateRangePicker', name: 'dateRangePicker',
+          component: () => import(/* webpackChunkName: "about" */ './views/components/DateRangePicker.vue')
+        },
       ]
     },
     {

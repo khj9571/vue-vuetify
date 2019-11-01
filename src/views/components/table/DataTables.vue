@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="fill-height" fluid>
     <v-layout column>
       <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1"></v-data-table>
     </v-layout>

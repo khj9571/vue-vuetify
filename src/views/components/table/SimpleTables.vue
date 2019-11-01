@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="fill-height" fluid>
     <v-layout column>
       <v-row v-border>
         <v-col>
@@ -24,7 +24,11 @@
         </v-col>
       </v-row>
 
-      <v-row></v-row>
+      <v-row>
+        <!--       class="ma-3 pa-6" -->
+        <v-btn class="ma-3">Btn1</v-btn>
+        <v-btn class="ma-3">Btn2</v-btn>
+      </v-row>
 
       <v-row></v-row>
     </v-layout>
@@ -41,6 +45,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   components: {}
 })
 export default class SimpleTables extends Vue {
-  mounted() {}
+  mounted() {
+
+    console.log(this.$route)
+  }
 }
 </script>

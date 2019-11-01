@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="fill-height" fluid>
     <v-btn @click="call()">Store Call</v-btn>
     <v-btn @click="call2()">Store Call2</v-btn>
     {{label}}

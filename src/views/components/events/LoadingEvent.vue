@@ -1,5 +1,5 @@
 <template>
-   <v-container>
+   <v-container class="fill-height" fluid>
        <v-btn @click="show()">로딩바 보이기</v-btn>
        <v-btn @click="hide()">로딩바 숨기기</v-btn>
    </v-container>

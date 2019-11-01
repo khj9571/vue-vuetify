@@ -7,12 +7,13 @@
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
+      {{currentUrl}}
     </v-app-bar>
 
-    <v-content class="fill-height">
-      <v-container class="fill-height" fluid>
+    <v-content class="fill-height" fluid>
+      <!-- <v-container class="fill-height" fluid> -->
         <router-view></router-view>
-      </v-container>
+      <!-- </v-container> -->
     </v-content>
 
     <v-footer app>
@@ -42,6 +43,10 @@ export default class App extends Vue {
 
   visible = false;
 
+  get currentUrl() {
+    return this.$route.path;
+  }
+  //
   created() {
     //loadingEvents.$on('')
 

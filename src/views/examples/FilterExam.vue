@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="fill-height" fluid>
     <v-layout column>
       <v-row v-border>
         <v-col>{{'10000000' | toThousand}}</v-col>

@@ -93,6 +93,11 @@ export default class SideMenu extends Vue {
               router: "dataTables"
             }
           ]
+        },
+        {
+          name: "DateRangePicker",
+          file: "png",
+          router: "dateRangePicker"
         }
       ]
     },
