@@ -89,6 +89,11 @@ export default new Router({
           path: 'store',
           name: 'store',
           component: () => import(/* webpackChunkName: "about" */ './views/examples/StoreExam.vue')
+        },
+        {
+          path: 'layout',
+          name: 'layout',
+          component: () => import(/* webpackChunkName: "about" */ './views/examples/LayoutExam.vue')
         }
       ]
     }
