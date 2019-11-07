@@ -1,6 +1,16 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <!--       class="ma-3 pa-6" -->
+  <v-container fill-height fluid v-border>
     <v-layout column>
+      <v-flex xs2 v-border>
+        <v-sheet>우리는 인생을 사는 이유를 깨우쳐야한다.</v-sheet>
+        <v-btn>버튼1</v-btn>
+      </v-flex>
+      <v-flex v-border>
+        <v-btn>버튼2</v-btn>
+      </v-flex>
+    </v-layout>
+    <!-- <v-layout column>
       <v-row v-border>
         <v-col>
           <v-card outlined>
@@ -24,14 +34,14 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <!--       class="ma-3 pa-6" -->
+      <v-row v-border>
+
         <v-btn class="ma-3">Btn1</v-btn>
         <v-btn class="ma-3">Btn2</v-btn>
       </v-row>
 
       <v-row></v-row>
-    </v-layout>
+    </v-layout>-->
   </v-container>
 </template>
 
@@ -46,8 +56,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class SimpleTables extends Vue {
   mounted() {
-
-    console.log(this.$route)
+    console.log(this.$route);
   }
 }
 </script>

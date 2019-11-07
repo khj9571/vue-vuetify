@@ -26,22 +26,41 @@ import moment from "moment";
 })
 export default class DateRangePicker extends Vue {
   private fromDt: any = moment("20190224").toDate();
-  private toDt: any = moment("20190224").toDate();
+  private toDt: any = moment("20190227").toDate();
 
-  private type = 'daterange';
-  private items= [
-          'date',
-          'week',
-          'month',
-          'daterange',
-          'monthrange'
-        ]
+  private type = "date";
+  private items = ["date", "week", "month", "daterange", "monthrange"];
 
   mounted() {
     console.log("여기 여기");
-    console.log(moment(this.fromDt).isBefore(this.toDt));
-    console.log(moment(this.fromDt).isBefore(this.fromDt));
+    
+    console.log(this.a(moment('20191015').toDate()))
+
+        
+    console.log(moment('20191022').isoWeek())
+        
+    console.log(moment(moment('20191029').toDate()).isoWeek())
     //this.fromDt = moment('20150224').toDate();
+
+
+
   }
+
+  a(dt:any) {
+
+      var tdt:any = new Date(dt.valueOf());
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4) 
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+  }
+
+
+  
 }
 </script>
