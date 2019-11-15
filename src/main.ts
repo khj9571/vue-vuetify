@@ -42,6 +42,11 @@ Vue.use(GloblePlugin);
 
 Vue.config.productionTip = false
 
+
+import VueApexCharts  from 'vue-apexcharts';
+
+Vue.component('apexchart', VueApexCharts)
+
 new Vue({
   router,
   store,

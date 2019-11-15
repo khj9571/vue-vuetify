@@ -129,6 +129,62 @@ export default class SideMenu extends Vue {
           name: "Layout",
           file: "json",
           router: "layout"
+        },
+        {
+          name: "Chart",
+          router: "charts",
+          children: [
+            {
+              name: "AreaExample",
+              file: "png",
+              router: "area"
+            },
+            {
+              name: "BarExample",
+              file: "txt",
+              router: "bar"
+            },
+            {
+              name: "BubbleExample",
+              file: "js",
+              router: "bubble"
+            },
+            {
+              name: "ColumnExample",
+              file: "json",
+              router: "column"
+            },
+            {
+              name: "DonutExample",
+              file: "json",
+              router: "donut"
+            },
+            {
+              name: "HeatmapExample",
+              file: "json",
+              router: "heatmap"
+            },
+            {
+              name: "LineExample",
+              file: "json",
+              router: "line"
+            },
+            {
+              name: "MixedExample",
+              file: "json",
+              router: "mixed"
+            },
+            {
+              name: "RadialBarExample",
+              file: "json",
+              router: "radialbar"
+            },
+            {
+              name: "ScatterExample",
+              file: "json",
+              router: "scatter"
+            }
+          ]
         }
       ]
     },

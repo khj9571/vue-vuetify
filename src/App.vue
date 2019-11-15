@@ -12,7 +12,7 @@
 
     <v-content class="fill-height" fluid>
       <!-- <v-container class="fill-height" fluid> -->
-        <router-view></router-view>
+      <router-view></router-view>
       <!-- </v-container> -->
     </v-content>
 
@@ -24,6 +24,11 @@
   </v-app>
 </template>
 
+<style>
+    .example {
+      background-color: white;
+    }
+</style>
 
 
 <script lang="ts">
@@ -60,7 +65,10 @@ export default class App extends Vue {
   }
 
   mounted() {
+    // this.$vuetify.theme.themes.dark.primary = "#4caf50";
     this.$vuetify.theme.dark = true;
   }
 }
 </script>
+
+

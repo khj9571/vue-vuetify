@@ -3,4 +3,13 @@ module.exports = {
     'vuetify'
   ],
   lintOnSave: false
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       data: `
+  //               @import "@/styles/variables.scss"
+  //           `
+  //     }
+  //   }
+  // }
 }

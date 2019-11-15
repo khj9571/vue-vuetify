@@ -94,7 +94,59 @@ export default new Router({
           path: 'layout',
           name: 'layout',
           component: () => import(/* webpackChunkName: "about" */ './views/examples/LayoutExam.vue')
-        }
+        },
+
+        {
+          path: 'charts', name: 'charts',
+          component: () => import(/* webpackChunkName: "about" */ './components/layouts/SubMain.vue'),
+          children: [
+            {
+              path: 'area', name: 'area',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/AreaExample.vue')
+            },
+            {
+              path: 'bar', name: 'bar',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/BarExample.vue')
+            },
+            {
+              path: 'bubble', name: 'bubble',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/BubbleExample.vue')
+            },
+            {
+              path: 'column', name: 'column',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/ColumnExample.vue')
+            },
+            {
+              path: 'donut', name: 'donut',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/DonutExample.vue')
+            },
+            {
+              path: 'heatmap', name: 'heatmap',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/HeatmapExample.vue')
+            },
+            {
+              path: 'line', name: 'line',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/LineExample.vue')
+            },
+            {
+              path: 'mixed', name: 'mixed',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/MixedExample.vue')
+            },
+            {
+              path: 'radialbar', name: 'radialbar',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/RadialBarExample.vue')
+            },
+            {
+              path: 'scatter', name: 'scatter',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/charts/ScatterExample.vue')
+            }
+          ]
+        },
+        // {
+        //   path: 'chart',
+        //   name: 'chart',
+        //   component: () => import(/* webpackChunkName: "about" */ './views/examples/ChartExam.vue')
+        // }
       ]
     }
   ]

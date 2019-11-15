@@ -32,17 +32,6 @@ export default class DateRangePicker extends Vue {
   private items = ["date", "week", "month", "daterange", "monthrange"];
 
   mounted() {
-    console.log("여기 여기");
-    
-    console.log(this.a(moment('20191015').toDate()))
-
-        
-    console.log(moment('20191022').isoWeek())
-        
-    console.log(moment(moment('20191029').toDate()).isoWeek())
-    //this.fromDt = moment('20150224').toDate();
-
-
 
   }
 

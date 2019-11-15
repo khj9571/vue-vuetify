@@ -6,6 +6,8 @@ import * as filters from '@/filters' // global filters
 import * as directives from '@/directives'
 
 
+
+
 declare module 'vue/types/vue' {
     interface Vue {
         $restApiService: HttpService;
@@ -128,6 +130,7 @@ GloblePlugin.install = function (Vue: any, options: any) {
     //console.log(Vue.axios)
 
     // Vue.prototype.$restApiService = restApiService;
+    
 
     let fi: any = filters;
     Object.keys(filters).forEach(key => {
