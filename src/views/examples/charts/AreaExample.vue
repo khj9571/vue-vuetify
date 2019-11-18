@@ -1,7 +1,7 @@
 <template>
   <v-container class="fill-height" v-border fluid>
     <div class="example">
-      <apexchart width="500" style="background:#ffffff;color:black" height="350" type="area" :options="chartOptions" :series="series"></apexchart>
+      <apexchart width="500" height="350" type="area" :options="chartOptions" :series="series"></apexchart>
     </div>
   </v-container>
 </template>

@@ -24,9 +24,10 @@
   </v-app>
 </template>
 
-<style>
+<style lang="scss">
     .example {
-      background-color: white;
+      background-color: $content_color;
+      color: $font_color;
     }
 </style>
 
