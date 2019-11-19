@@ -1,16 +1,28 @@
 import { DirectiveOptions } from 'vue'
 
 const directive: DirectiveOptions = {
-    inserted(el, node) {    
+    inserted(el, node) {
         console.log('border --')
         console.log(node);
         console.log(el);
-        
+
+
+
         var border = node.value || true;
 
-        if(border) {
-            el.style.border = 'solid 1px #dbdbdb';
+        if (node.value) {
+            var color = node.value.color || '#dbdbdb';
+            var thickness = node.value.thickness || '';
+
+            el.style.border = `solid ${thickness}px ${color}`;
+
+        } else {
+            if (border) {
+                el.style.border = 'solid 1px #dbdbdb';
+            }
         }
+
+
 
 
 
@@ -18,8 +30,8 @@ const directive: DirectiveOptions = {
         //     // var a = false || '기본값';              // 앞에가 false면 뒤에 '기본값'이 들어간다.
         //     // var b = true || '이건 무시되는 값';     // 이런 경우에는 항상 true
         //     // var c = "" || "빈 값을 입력하셨네요";  // 이런식으로 응용도 가능하다.
-            
-            
+
+
         //     var bgColor = node.value.backgroundColor || '#ff0000';
         //     var border = node.value.border || false;
 
@@ -43,9 +55,9 @@ const directive: DirectiveOptions = {
 
     },
     update(el, binding, vnode) {
-       // console.log("updated");
+        // console.log("updated");
     }
-    
+
 };
 
 export default directive;

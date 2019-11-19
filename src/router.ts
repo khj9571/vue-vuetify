@@ -93,7 +93,24 @@ export default new Router({
         {
           path: 'layout',
           name: 'layout',
-          component: () => import(/* webpackChunkName: "about" */ './views/examples/LayoutExam.vue')
+          component: () => import(/* webpackChunkName: "about" */ './components/layouts/SubMain.vue'),
+          children:[
+            {
+              path: 'layout1',
+              name: 'layout1',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/layouts/Layout1.vue')
+            },
+            {
+              path: 'layout2',
+              name: 'layout2',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/layouts/Layout2.vue')
+            },
+            {
+              path: 'layout3',
+              name: 'layout3',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/layouts/Layout3.vue')
+            }
+          ]
         },
 
         {
