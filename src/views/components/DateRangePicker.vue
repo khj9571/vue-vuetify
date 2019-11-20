@@ -16,12 +16,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import VDaterange from "@/components/global/VDateRange.vue";
+// import VDaterange from "@/components/global/VDateRange.vue";
 import moment from "moment";
 
 @Component({
   components: {
-    VDaterange
+    // VDaterange
   }
 })
 export default class DateRangePicker extends Vue {

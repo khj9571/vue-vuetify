@@ -143,6 +143,11 @@ export default class SideMenu extends Vue {
               name: "Layout3",
               file: "png",
               router: "layout3"
+            },
+            {
+              name: "Layout4",
+              file: "png",
+              router: "layout4"
             }
           ]
         },

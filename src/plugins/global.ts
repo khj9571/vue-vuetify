@@ -5,7 +5,7 @@ import {loadingEvents} from '@/events/Events'
 import * as filters from '@/filters' // global filters
 import * as directives from '@/directives'
 
-
+import VDaterange from "@/components/global/VDateRange.vue";
 
 
 declare module 'vue/types/vue' {
@@ -124,6 +124,7 @@ class LoadingManager {
 
 const GloblePlugin: any = {};
 
+//process.env
 
 GloblePlugin.install = function (Vue: any, options: any) {
 
@@ -131,6 +132,7 @@ GloblePlugin.install = function (Vue: any, options: any) {
 
     // Vue.prototype.$restApiService = restApiService;
     
+    Vue.component('v-daterange',VDaterange);
 
     let fi: any = filters;
     Object.keys(filters).forEach(key => {

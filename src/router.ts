@@ -109,6 +109,11 @@ export default new Router({
               path: 'layout3',
               name: 'layout3',
               component: () => import(/* webpackChunkName: "about" */ './views/examples/layouts/Layout3.vue')
+            },
+            {
+              path: 'layout4',
+              name: 'layout4',
+              component: () => import(/* webpackChunkName: "about" */ './views/examples/layouts/Layout4.vue')
             }
           ]
         },
