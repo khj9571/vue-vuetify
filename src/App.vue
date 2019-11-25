@@ -12,8 +12,13 @@
 
     <v-content class="fill-height" fluid>
       <!-- <v-container class="fill-height" fluid> -->
-      <router-view></router-view>
+      <!-- <router-view></router-view> -->
       <!-- </v-container> -->
+      <transition name="fade" mode="out-in">
+        <keep-alive>
+          <router-view :key="$route.path" />
+        </keep-alive>
+      </transition>
     </v-content>
 
     <v-footer app>
@@ -25,10 +30,10 @@
 </template>
 
 <style lang="scss">
-    .example {
-      background-color: $content_color;
-      color: $font_color;
-    }
+.example {
+  background-color: $content_color;
+  color: $font_color;
+}
 </style>
 
 

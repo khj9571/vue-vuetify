@@ -64,12 +64,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import moment from "moment";
 
 @Component({
   components: {}
 })
 export default class Layout4 extends Vue {
 
+     
 
       temp = [
         { midx: 10000, menuId: "GameRank" },
@@ -109,6 +111,17 @@ export default class Layout4 extends Vue {
    mounted() {
 
      console.log(process.env)
+
+    var a = moment();
+    var b= moment();
+    
+    console.log(moment(a).isSame(b,'year'));
+        
+    console.log(moment(a).isSame(b,'month'));
+        
+    console.log(moment(a).isSame(b,'day'));
+
+    console.log(moment(a).isBefore(b));
 
   }
 }
