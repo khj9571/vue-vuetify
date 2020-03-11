@@ -6,8 +6,10 @@
         :open="open"
         :items="items"
         activatable
-        item-key="name"
+        item-key="key"
         open-on-click
+        return-object
+        @update:active="onItemChange"
       >
         <template v-slot:prepend="{ item, open }">
           <v-icon v-if="!item.file">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
@@ -30,13 +32,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-
+import { Component, Prop, Vue, PropSync } from "vue-property-decorator";
+import { State, Action, Getter, Mutation } from "vuex-class";
 @Component({
   name: "side-menu",
   components: {}
 })
 export default class SideMenu extends Vue {
+
+    @PropSync("drawer", {
+    // default: () => {
+    //   return new Date();
+    // }
+  })
+  sync_drawer!: Boolean;
+
+  @Mutation("addMenuItem") addMenuItem: any;
+
+
   open = ["컴포넌트", "Events"];
   files = {
     html: "mdi-language-html5",
@@ -51,22 +64,27 @@ export default class SideMenu extends Vue {
   tree = [];
   items = [
     {
+      key:"1",
       name: "Home",
       router: "home"
     },
     {
+      key:"2",
       name: "About",
       router: "about"
     },
     {
+      key:"3",
       name: "컴포넌트",
       router: "",
       children: [
         {
+          key:"3-1",
           name: "Events",
           router: "",
           children: [
             {
+              key:"3-1-1",
               name: "LoadingEvent",
               file: "png",
               router: "loadingEvent"
@@ -74,20 +92,24 @@ export default class SideMenu extends Vue {
           ]
         },
         {
+          key:"3-2",
           name: "Table",
           router: "",
           children: [
             {
+              key:"3-2-1",
               name: "Data Iterator",
               file: "png",
               router: "dataIterators"
             },
             {
+              key:"3-2-2",
               name: "Simple Table",
               file: "png",
               router: "simpleTables"
             },
             {
+              key:"3-2-3",
               name: "Data Table",
               file: "png",
               router: "dataTables"
@@ -95,6 +117,7 @@ export default class SideMenu extends Vue {
           ]
         },
         {
+          key:"3-3",
           name: "DateRangePicker",
           file: "png",
           router: "dateRangePicker"
@@ -102,49 +125,59 @@ export default class SideMenu extends Vue {
       ]
     },
     {
+      key:"4",
       name: "Example",
       router: "",
       children: [
         {
+          key:"4-1",
           name: "Api Exam",
           file: "png",
           router: "api"
         },
         {
+          key:"4-2",
           name: "Filter",
           file: "txt",
           router: "filter"
         },
         {
+          key:"4-3",
           name: "Directive",
           file: "js",
           router: "directive"
         },
         {
+          key:"4-4",
           name: "Store",
           file: "json",
           router: "store"
         },
         {
+          key:"4-5",
           name: "Layouts",
           router: "layouts",
           children: [
             {
+              key:"4-5-1",
               name: "Layout1",
               file: "png",
               router: "layout1"
             },
             {
+              key:"4-5-2",
               name: "Layout2",
               file: "png",
               router: "layout2"
             },
             {
+              key:"4-5-3",
               name: "Layout3",
               file: "png",
               router: "layout3"
             },
             {
+              key:"4-5-4",
               name: "Layout4",
               file: "png",
               router: "layout4"
@@ -152,55 +185,66 @@ export default class SideMenu extends Vue {
           ]
         },
         {
+          key:"4-6",
           name: "Chart",
           router: "charts",
           children: [
             {
+              key:"4-6-1",
               name: "AreaExample",
               file: "png",
               router: "area"
             },
             {
+              key:"4-6-2",
               name: "BarExample",
               file: "txt",
               router: "bar"
             },
             {
+              key:"4-6-3",
               name: "BubbleExample",
               file: "js",
               router: "bubble"
             },
             {
+              key:"4-6-4",
               name: "ColumnExample",
               file: "json",
               router: "column"
             },
             {
+              key:"4-6-5",
               name: "DonutExample",
               file: "json",
               router: "donut"
             },
             {
+              key:"4-6-6",
               name: "HeatmapExample",
               file: "json",
               router: "heatmap"
             },
             {
+              key:"4-6-7",
               name: "LineExample",
               file: "json",
               router: "line"
             },
             {
+              key:"4-6-8",
               name: "MixedExample",
               file: "json",
               router: "mixed"
             },
             {
+              key:"4-6-9",
               name: "RadialBarExample",
               file: "json",
               router: "radialbar"
             },
             {
+              key:"4-6-10",
               name: "ScatterExample",
               file: "json",
               router: "scatter"
@@ -210,20 +254,30 @@ export default class SideMenu extends Vue {
       ]
     },
     {
+      key:"5",
       name: "메뉴7",
       file: "md",
       router: ""
     },
     {
+      key:"6",
       name: "메뉴8",
       file: "js",
       router: ""
     },
     {
+      key:"7",
       name: "메뉴9",
       file: "txt",
       router: ""
     }
   ];
+
+  onItemChange(item:any) {   
+    const [selectedItem] = item
+    this.addMenuItem(selectedItem)
+
+    this.sync_drawer = false
+  }
 }
 </script>

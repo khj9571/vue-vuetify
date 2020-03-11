@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app clipped>
-      <side-menu></side-menu>
+      <side-menu :drawer.sync="drawer"></side-menu>
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left>
@@ -13,7 +13,8 @@
     <v-content class="fill-height" fluid>
       <!-- <v-container class="fill-height" fluid> -->
       <!-- <router-view></router-view> -->
-      <!-- </v-container> -->
+      <!-- </v-container> -->      
+      <tab-menu> </tab-menu>
       <transition name="fade" mode="out-in">
         <keep-alive>
           <router-view :key="$route.path" />
@@ -40,13 +41,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import SideMenu from "@/components/layouts/SideMenu.vue";
+import TabMenu from "@/components/layouts/TabMenu.vue"
 import Loading from "@/components/global/Loading.vue";
 import { loadingEvents } from "@/events/Events";
 
 @Component({
   components: {
     SideMenu,
-    Loading
+    Loading,
+    TabMenu
   }
 })
 export default class App extends Vue {
