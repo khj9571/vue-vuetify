@@ -31,7 +31,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    addMenuItem (state,item) {
+    addMenuItem (state, item) {
 
      if(item === undefined) return
     
@@ -52,6 +52,9 @@ export default new Vuex.Store({
         state.currentIndex  = currentIdx
      }
 
+    },
+    removeMenuItem(state, idx) {  
+      state.selectedMenuItems.splice(idx,1)
     }
   },
   actions: {
