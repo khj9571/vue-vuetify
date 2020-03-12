@@ -30,12 +30,13 @@
             :open="open"
             :items="treeItem"
             :open-all="openAll"
+            :active.sync="active"
             activatable
             item-key="key"
             open-on-click
             return-object
             :search="search_keyword"
-            @input="onItemChange"
+            @update:active="onItemChange"
           >
             <template v-slot:prepend="{ item, open }">
               <v-icon v-if="!item.file">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
@@ -105,6 +106,7 @@ export default class SideMenu extends Vue {
   };
   tree = [];
   items = [];
+  active = [];
 
   created() {
     this.treeItem = this.getMenuItem;
@@ -113,7 +115,7 @@ export default class SideMenu extends Vue {
   onItemChange(item: any) {
 
     console.log('체인지.....')
-    console.log(item)
+    console.log(this.active)
     // const [selectedItem] = item;
     // this.addMenuItem(selectedItem);
     // this.sync_drawer = false;
