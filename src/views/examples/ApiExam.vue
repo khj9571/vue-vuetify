@@ -7,6 +7,9 @@
           <v-btn @click="call_post()">
               Post
           </v-btn>
+          <v-btn @click="call_All()">
+              All
+          </v-btn>
       </v-layout>
    </v-container>
 </template>
@@ -26,8 +29,8 @@ export default class ApiExam extends Vue {
 
 
   call_get() {
-   this.$restApiService.get("http://localhost:9090/getTest").then(res => {
-         console.log(res);
+   this.$restApiService.get("http://localhost:4000/user/sample").then(res => {
+        // console.log(res);
    }, err => {
 
    })
@@ -35,6 +38,17 @@ export default class ApiExam extends Vue {
 
   call_post() {
     alert('post')
+  }
+
+  call_All() {
+    
+    let service1 =  this.$restApiService.get("http://localhost:4000/user/sample");
+    let service2 =  this.$restApiService.get("http://localhost:4000/user/sample");
+    this.$restApiService.all([service1,service2]).then(res => {
+
+    },err =>{
+          alert('에러 입니다')
+    })
   }
 
   mounted() {}

@@ -33,6 +33,9 @@ interface AbstractApi {
     get(url: string, params: any, headers: any, useLoading: boolean): Promise<any>;
 
     post(url: string, params: any, headers: any, useLoading: boolean): Promise<any>;
+
+    all(service: Promise<any>[]): Promise<any>;
+    
 }
 
 class HttpService implements AbstractApi {
@@ -43,9 +46,7 @@ class HttpService implements AbstractApi {
         if(useLoading) LoadingManager.show();
 
         return Vue.axios.get(url, { params: params, headers: headers }).then((response) => {
-            // console.log(response.data);
-
-            
+             console.log(response);     
             return new Promise(function (resolve, reject) {
                // serviceResLog(url,response);
                 if (response.data) {
@@ -65,7 +66,7 @@ class HttpService implements AbstractApi {
                 setTimeout(() => {
                 //    this.loading.hide();
                 LoadingManager.hide();
-                }, 3000);
+                }, 1000);
             }
 
             setTimeout(() => {
@@ -101,6 +102,30 @@ class HttpService implements AbstractApi {
              //   Notification.getNotificationMsg(resultType);
             }, 100);
         });
+    }
+
+    all(service: Promise<any>[]) {
+       
+      return Promise.all(service).then(response => {
+           
+            console.log('PromoisALL 결과', response)
+
+            return new Promise(function (resolve, reject) {
+                // serviceResLog(url,response);
+                 if (response) {
+                     resolve(response);
+                 } else {
+                     reject('');
+                 }
+             })
+
+        }, err => {
+
+            return Promise.reject('Err')
+         
+        }).finally(()=>{
+
+        })
     }
 
 

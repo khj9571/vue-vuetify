@@ -12,7 +12,13 @@
             <v-icon>mdi-chevron-up</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-text-field v-model="search_keywork" outlined dense hide-details @keyup.enter="onKeyEnter">
+          <v-text-field
+            v-model="search_keyword"
+            outlined
+            dense
+            hide-details
+            @keyup.enter="onKeyEnter"
+          >
             <v-icon slot="append" @click="onSearchIconClick">mdi-magnify</v-icon>
           </v-text-field>
         </v-toolbar>
@@ -22,7 +28,7 @@
             ref="tree_menu"
             v-model="tree"
             :open="open"
-            :items="getMenuItem"
+            :items="treeItem"
             :open-all="openAll"
             activatable
             item-key="key"
@@ -58,6 +64,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, PropSync, Ref } from "vue-property-decorator";
 import { State, Action, Getter, Mutation } from "vuex-class";
+import { cloneDeep, values, every, remove } from "lodash";
 
 @Component({
   name: "side-menu",
@@ -77,10 +84,12 @@ export default class SideMenu extends Vue {
   @Mutation("addMenuItem") addMenuItem: any;
 
   @Getter("getMenuItem") getMenuItem: any;
-  
+
+  private treeItem: any = [];
+
   private openAll: boolean = true;
 
-  private search_keywork: string = 'search';
+  private search_keyword: string = "Api";
 
   open = ["컴포넌트", "Events"];
   files = {
@@ -96,6 +105,10 @@ export default class SideMenu extends Vue {
   tree = [];
   items = [];
 
+  created() {
+    this.treeItem = this.getMenuItem;
+  }
+
   onItemChange(item: any) {
     const [selectedItem] = item;
     this.addMenuItem(selectedItem);
@@ -107,12 +120,86 @@ export default class SideMenu extends Vue {
     this.tree_menu.updateAll(this.openAll);
   }
 
-  onSearchIconClick() {
-  
-  }
+  onSearchIconClick() {}
 
   onKeyEnter() {
     //this.getMenuItem.
+    let cloneItem = cloneDeep(this.getMenuItem);
+
+    //console.log(cloneItem[2])
+    let temp:Array<any> = []
+    let fn = (item: any, parent: any) => {
+      if ("children" in item) {
+        item.children.forEach((d: any) => {
+          fn(d, item.children);
+        });
+      } else {
+        // console.log(item.name)
+        // console.log(`${item.name}`, parent);
+
+        // if (item.name == "About") {
+        //   console.log('AAAAAAAAAAA')
+
+        // }
+
+        // console.log(index)
+
+        // console.log(item.name.indexOf(this.search_keyword))
+        if (String(item.name).toLowerCase().indexOf(String(this.search_keyword).toLowerCase()) == -1) {
+          let idx = 0;
+
+          let find = parent.some((dt: any, i: number) => {
+            if (item.key == dt.key) {
+              idx = i;
+              return true;
+            }
+
+            return false;
+          });
+
+          if (find) {
+             
+           
+          }
+        }else {
+          temp.push(item)
+        }
+        return;
+      }
+    };
+
+    cloneItem.forEach((d: any) => {
+      fn(d, cloneItem);
+    });
+
+    if(String(this.search_keyword).trim() == '') {
+      this.treeItem = this.getMenuItem
+     
+     setTimeout(() => {
+        this.openAll = true
+         this.tree_menu.updateAll(this.openAll);
+     }, 100);
+ 
+    }else {
+      
+      console.log(temp)
+
+      this.treeItem = temp
+    }
+
+   //this.treeItem = temp
+    //  let fn = (item:any) => {
+
+    //     if('children' in item) {
+
+    //        item.children.forEach( (d:any) => {
+    //           fn(d)
+    //        })
+    //     }else {
+    //        item.name.indexOf(this.search_keyword)
+    //     }
+
+    //  }
   }
 }
 </script>
