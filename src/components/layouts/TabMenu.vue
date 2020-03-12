@@ -40,6 +40,7 @@ export default class TabMenu extends Vue {
 
   onTabChange(item: any) {
     console.log("Tab Change....");
+    console.log(item)
     if (item == undefined) return;
     const currentItem = this.getSelectedMenuItem[item];
     console.log(currentItem);

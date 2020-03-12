@@ -258,10 +258,12 @@ export default new Vuex.Store({
       })
 
       if (!hasItem) {
-        state.selectedMenuItems.push(item)
+        console.log('아이템 없음')
+        state.selectedMenuItems = [...state.selectedMenuItems,item]
         const { length } = state.selectedMenuItems;
         state.currentIndex = length - 1
       } else {
+        console.log('아이템 있음')
         state.currentIndex = currentIdx
       }
 

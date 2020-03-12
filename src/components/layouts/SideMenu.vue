@@ -34,7 +34,8 @@
             item-key="key"
             open-on-click
             return-object
-            @update:active="onItemChange"
+            :search="search_keyword"
+            @input="onItemChange"
           >
             <template v-slot:prepend="{ item, open }">
               <v-icon v-if="!item.file">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
@@ -89,7 +90,7 @@ export default class SideMenu extends Vue {
 
   private openAll: boolean = true;
 
-  private search_keyword: string = "Api";
+  private search_keyword: string = "";
 
   open = ["컴포넌트", "Events"];
   files = {
@@ -110,9 +111,12 @@ export default class SideMenu extends Vue {
   }
 
   onItemChange(item: any) {
-    const [selectedItem] = item;
-    this.addMenuItem(selectedItem);
-    this.sync_drawer = false;
+
+    console.log('체인지.....')
+    console.log(item)
+    // const [selectedItem] = item;
+    // this.addMenuItem(selectedItem);
+    // this.sync_drawer = false;
   }
 
   onMenuClick() {
@@ -134,17 +138,6 @@ export default class SideMenu extends Vue {
           fn(d, item.children);
         });
       } else {
-        // console.log(item.name)
-        // console.log(`${item.name}`, parent);
-
-        // if (item.name == "About") {
-        //   console.log('AAAAAAAAAAA')
-
-        // }
-
-        // console.log(index)
-
-        // console.log(item.name.indexOf(this.search_keyword))
         if (String(item.name).toLowerCase().indexOf(String(this.search_keyword).toLowerCase()) == -1) {
           let idx = 0;
 
