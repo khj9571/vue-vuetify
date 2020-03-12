@@ -11,7 +11,11 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Home',
+        keepAlive: true
+      }
     },
     {
       path: '/about',
@@ -59,7 +63,11 @@ export default new Router({
         },
         {
           path: 'dateRangePicker', name: 'dateRangePicker',
-          component: () => import(/* webpackChunkName: "about" */ './views/components/DateRangePicker.vue')
+          component: () => import(/* webpackChunkName: "about" */ './views/components/DateRangePicker.vue'),
+          meta: {
+            title: 'DateRangePicker',
+            keepAlive: false
+          }
         },
       ]
     },

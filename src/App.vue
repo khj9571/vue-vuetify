@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app clipped>
+    <v-navigation-drawer width="370" v-model="drawer" app clipped>
       <side-menu :drawer.sync="drawer"></side-menu>
     </v-navigation-drawer>
 
@@ -13,13 +13,18 @@
     <v-content class="fill-height" fluid>
       <!-- <v-container class="fill-height" fluid> -->
       <!-- <router-view></router-view> -->
-      <!-- </v-container> -->      
-      <tab-menu> </tab-menu>
-      <transition name="fade" mode="out-in">
-        <keep-alive>
+      <!-- </v-container> -->
+      <tab-menu></tab-menu>
+      <!-- <transition name="fade" mode="out-in"> -->
+        <!-- <keep-alive>
           <router-view :key="$route.path" />
+        </keep-alive> -->
+
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive"></router-view>
         </keep-alive>
-      </transition>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <!-- </transition> -->
     </v-content>
 
     <v-footer app>
@@ -41,7 +46,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import SideMenu from "@/components/layouts/SideMenu.vue";
-import TabMenu from "@/components/layouts/TabMenu.vue"
+import TabMenu from "@/components/layouts/TabMenu.vue";
 import Loading from "@/components/global/Loading.vue";
 import { loadingEvents } from "@/events/Events";
 

@@ -1,6 +1,11 @@
 <template>
   <!-- <HelloWorld /> -->
-  <loading/>
+  <!-- <loading/> -->
+   <v-container style="border:solid 1px;height:100%" fluid>   
+     <v-flex text-xs-center>
+        <h1>Home 화면</h1>
+     </v-flex>
+   </v-container>
 </template>
 
 <script lang="ts">
