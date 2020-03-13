@@ -17,7 +17,8 @@
             outlined
             dense
             hide-details
-            @keyup.enter="onKeyEnter"
+            clearable
+            style="width:150px"
           >
             <v-icon slot="append" @click="onSearchIconClick">mdi-magnify</v-icon>
           </v-text-field>
