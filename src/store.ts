@@ -225,7 +225,9 @@ export default new Vuex.Store({
         router: "home"
       }
     ],
-    currentIndex: 0
+    currentIndex: 0,
+    isLogin: false,
+    userInfo: {}
   },
   getters: {
     getSelectedMenuItem: (state) => {
@@ -239,8 +241,14 @@ export default new Vuex.Store({
     getCurrentIndex: (state) => {
       return state.currentIndex
     },
-    getMenuItem:(state) => {
+    getMenuItem: (state) => {
       return state.munuItems
+    },
+    getIsLogin: (state) => {
+      return state.isLogin
+    },
+    getUserInfo: (state) => {
+      return state.userInfo
     }
   },
   mutations: {
@@ -258,21 +266,48 @@ export default new Vuex.Store({
       })
 
       if (!hasItem) {
-        console.log('아이템 없음')
-        state.selectedMenuItems = [...state.selectedMenuItems,item]
+        state.selectedMenuItems = [...state.selectedMenuItems, item]
         const { length } = state.selectedMenuItems;
         state.currentIndex = length - 1
       } else {
-        console.log('아이템 있음')
         state.currentIndex = currentIdx
       }
 
     },
     removeMenuItem(state, idx) {
       state.selectedMenuItems.splice(idx, 1)
+    },
+    setUserInfo(state, item) {
+      state.userInfo = item
+    },
+    clearLogout(state) {
+
+      if (!state.isLogin) return
+
+      state.selectedMenuItems = [{
+        key: "1",
+        name: "Home",
+        router: "home"
+      }]
+
+      state.isLogin = false
+      state.userInfo = {}
     }
   },
   actions: {
+    loginUser({ commit, state }, params) {
+      if (params.userId == 1 && params.userPw == 1) {
+        alert('로그인 성공')
+        state.isLogin = true
 
+        let userInfo = {
+          name: '홍길동',
+          empNo: '1234'
+        }
+
+        commit('setUserInfo', userInfo)
+      }
+
+    }
   }
 })

@@ -53,3 +53,10 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
+
+router.beforeEach((to, from, next) => {
+  // ...
+  console.log('라우터 체인지')
+  next();
+})
