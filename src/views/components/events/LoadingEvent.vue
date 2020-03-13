@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import {loadingEvents} from '@/events/Events'
+import {loadingEvents ,LOADINGEVENT} from '@/events/Events'
 
 @Component({
   name: "loading-event",
@@ -21,11 +21,11 @@ export default class LoadingEvent extends Vue {
 
 
   show() {
-   loadingEvents.$emit('show')
+   loadingEvents.$emit(LOADINGEVENT.SHOW)
   }
 
   hide() {
-    loadingEvents.$emit('hide')
+    loadingEvents.$emit(LOADINGEVENT.HIDE)
   }
 
 

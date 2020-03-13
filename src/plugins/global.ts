@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
-import {loadingEvents} from '@/events/Events'
+import {loadingEvents, LOADINGEVENT} from '@/events/Events'
 
 import * as filters from '@/filters' // global filters
 import * as directives from '@/directives'
@@ -135,11 +135,11 @@ class HttpService implements AbstractApi {
 class LoadingManager {
 
     static show() {
-        loadingEvents.$emit('show')
+        loadingEvents.$emit(LOADINGEVENT.SHOW)
     }
 
     static hide() {
-        loadingEvents.$emit('hide');
+        loadingEvents.$emit(LOADINGEVENT.HIDE);
     }
 
 }

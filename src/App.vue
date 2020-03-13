@@ -48,7 +48,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import SideMenu from "@/components/layouts/SideMenu.vue";
 import TabMenu from "@/components/layouts/TabMenu.vue";
 import Loading from "@/components/global/Loading.vue";
-import { loadingEvents } from "@/events/Events";
+import { loadingEvents, LOADINGEVENT } from "@/events/Events";
 
 @Component({
   components: {
@@ -69,11 +69,11 @@ export default class App extends Vue {
   created() {
     //loadingEvents.$on('')
 
-    loadingEvents.$on("show", () => {
+    loadingEvents.$on(LOADINGEVENT.SHOW, () => {
       this.visible = true;
     });
 
-    loadingEvents.$on("hide", () => {
+    loadingEvents.$on(LOADINGEVENT.HIDE, () => {
       this.visible = false;
     });
   }

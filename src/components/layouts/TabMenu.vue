@@ -17,6 +17,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { State, Action, Getter, Mutation } from "vuex-class";
+import { menuTabChangeEvents, MENUTABCHANGEEVENT } from "@/events/Events";
 
 @Component({
   name: "tab-menu",
@@ -40,10 +41,11 @@ export default class TabMenu extends Vue {
 
   onTabChange(item: any) {
     console.log("Tab Change....");
-    console.log(item)
+    console.log(item);
     if (item == undefined) return;
     const currentItem = this.getSelectedMenuItem[item];
     console.log(currentItem);
+    menuTabChangeEvents.$emit(MENUTABCHANGEEVENT.TABMENUCHANGE, currentItem);
     this.$router.push({ name: currentItem.router });
   }
 

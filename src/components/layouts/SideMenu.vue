@@ -67,6 +67,7 @@
 import { Component, Prop, Vue, PropSync, Ref } from "vue-property-decorator";
 import { State, Action, Getter, Mutation } from "vuex-class";
 import { cloneDeep, values, every, remove } from "lodash";
+import {menuTabChangeEvents , MENUTABCHANGEEVENT} from '@/events/Events'
 
 @Component({
   name: "side-menu",
@@ -106,19 +107,26 @@ export default class SideMenu extends Vue {
   };
   tree = [];
   items = [];
-  active = [];
+  active:Array<any> = [];
 
   created() {
     this.treeItem = this.getMenuItem;
+    menuTabChangeEvents.$on(MENUTABCHANGEEVENT.TABMENUCHANGE,(item:any) => {
+     
+     console.log('아이템 체인지')
+     console.log(item)
+     this.active = [item]
+
+    })
   }
 
   onItemChange(item: any) {
 
     console.log('체인지.....')
     console.log(this.active)
-    // const [selectedItem] = item;
-    // this.addMenuItem(selectedItem);
-    // this.sync_drawer = false;
+    const [selectedItem] = item;
+    this.addMenuItem(selectedItem);
+    this.sync_drawer = false;
   }
 
   onMenuClick() {
