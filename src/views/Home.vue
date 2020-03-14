@@ -84,7 +84,10 @@ export default class Home extends Vue {
   onLoginClick() {
 
 
-     this.loginUser(this.userInfo)
+      this.loginUser(this.userInfo).then((res:any) => {
+
+
+      })
       // if(this.userInfo.userId == 1 && this.userInfo.userPw == 1){
       //     alert('로그인 성공')
       // }else {

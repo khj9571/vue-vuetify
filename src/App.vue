@@ -9,7 +9,7 @@
       <v-toolbar-title>Application</v-toolbar-title>
       <!-- {{currentUrl}} {{getIsLogin}} -->
       <v-spacer></v-spacer>
-
+        {{$route.meta}}
       <span v-if="getIsLogin">
         {{getUserInfo.name}} 님 환영 합니다
         <!-- <v-avatar color="indigo">
@@ -47,10 +47,12 @@
       </keep-alive>-->
 
       <keep-alive>
-        <router-view v-if="$route.meta.keepAlive"></router-view>
+        <router-view v-if="$route.meta && $route.meta.keepAlive == true"></router-view>
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive"></router-view>
       <!-- </transition> -->
+
+      <!-- <router-view></router-view> -->
     </v-content>
 
     <v-footer app>

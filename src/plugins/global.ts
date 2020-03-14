@@ -66,7 +66,7 @@ class HttpService implements AbstractApi {
                 setTimeout(() => {
                 //    this.loading.hide();
                 LoadingManager.hide();
-                }, 1000);
+                }, 1200);
             }
 
             setTimeout(() => {
@@ -145,7 +145,7 @@ class LoadingManager {
 }
 
 
-
+export const httpService = new HttpService()
 
 const GloblePlugin: any = {};
 
@@ -174,7 +174,7 @@ GloblePlugin.install = function (Vue: any, options: any) {
 
     Vue.$myGlobal = 'abc';
 
-    Vue.prototype.$restApiService = new HttpService();
+    Vue.prototype.$restApiService = httpService
 }
 
 export default GloblePlugin

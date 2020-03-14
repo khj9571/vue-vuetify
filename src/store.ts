@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { httpService } from '@/plugins/global'
 
 import { modules } from '@/modules'
 
@@ -295,9 +296,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    loginUser({ commit, state }, params) {
+    async loginUser({ commit, state }, params) {
       if (params.userId == 1 && params.userPw == 1) {
-        alert('로그인 성공')
+
         state.isLogin = true
 
         let userInfo = {
@@ -306,8 +307,22 @@ export default new Vuex.Store({
         }
 
         commit('setUserInfo', userInfo)
+
+        const result = await httpService.get("http://localhost:4000/user/sample").then(res => {
+          
+        /**
+         * 1단계 처리 후... 화면단에서 성공 처리후에 대한 걸 하고 싶을때
+         */
+          return new Promise(function (resolve, reject) {
+            // serviceResLog(url,response);
+            resolve(res);
+          })
+        })
+
+        return result
       }
 
+      
     }
   }
 })
