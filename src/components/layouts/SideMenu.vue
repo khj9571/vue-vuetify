@@ -46,7 +46,7 @@
             <template v-slot:label="{ item, open ,leaf }">
               <router-link
                 v-if="leaf"
-                :to="{ name: item.router, params: { userId: 123 }}"
+                :to="{ name: item.router, params: { userId: 123 },query:{name:'abc'}}"
               >{{item.name}}</router-link>
               <span v-else>{{item.name}}</span>
 

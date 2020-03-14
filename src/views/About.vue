@@ -19,5 +19,13 @@ export default class About extends Vue {
     console.log(this.$route)
     console.log(this.$router)
    }
+
+   activated() {
+     console.log('Activated')
+   }
+
+   deactivated() {
+     console.log('Deactivated')
+   }
 }
 </script>
