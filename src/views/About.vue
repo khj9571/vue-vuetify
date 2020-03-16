@@ -1,8 +1,17 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-     <input type="text" value="123">
-  </div>
+
+ <v-row>
+      <v-col cols="12">
+        <v-combobox
+          item-text="label"
+          v-model="select"
+          :items="items"
+          label=""
+          outlined
+          dense
+        ></v-combobox>
+      </v-col>
+    </v-row>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
@@ -12,6 +21,21 @@ import { State, Action, Getter } from "vuex-class";
   components: {}
 })
 export default class About extends Vue {
+
+  private select:any = null
+  
+  private items = [{
+    label:'서울',
+    value:1
+  },
+  {
+    label:'부산',
+    value:2
+  },
+  {
+    label:'대구',
+    value:3
+  }]
 
    created() {
     
