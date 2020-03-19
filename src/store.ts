@@ -68,6 +68,12 @@ export default new Vuex.Store({
             name: "DateRangePicker",
             file: "png",
             router: "dateRangePicker"
+          },
+          {
+            key: "3-4",
+            name: "CodeComboBox",
+            file: "png",
+            router: "codeComboBox"
           }
         ]
       },

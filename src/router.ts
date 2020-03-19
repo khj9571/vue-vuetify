@@ -74,6 +74,10 @@ export default new Router({
             keepAlive: false
           }
         },
+        {
+          path: 'codeComboBox', name: 'codeComboBox',
+          component: () => import(/* webpackChunkName: "about" */ './views/components/CodeComboBox.vue')
+        }
       ]
     },
     {

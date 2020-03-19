@@ -6,7 +6,8 @@ import * as filters from '@/filters' // global filters
 import * as directives from '@/directives'
 
 import VDaterange from "@/components/global/VDateRange.vue";
-
+import VCodeCombo from "@/components/global/VCodeCombo.vue";
+import VCodeBox from "@/components/global/VCodeBox.vue";
 
 declare module 'vue/types/vue' {
     interface Vue {
@@ -158,6 +159,8 @@ GloblePlugin.install = function (Vue: any, options: any) {
     // Vue.prototype.$restApiService = restApiService;
     
     Vue.component('v-daterange',VDaterange);
+    Vue.component('v-code-combo',VCodeCombo);
+    Vue.component('v-code-box',VCodeBox);
 
     let fi: any = filters;
     Object.keys(filters).forEach(key => {

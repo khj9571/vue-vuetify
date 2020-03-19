@@ -35,6 +35,7 @@
             activatable
             item-key="key"
             open-on-click
+            dense
             return-object
             :search="search_keyword"
             @update:active="onItemChange"
@@ -68,7 +69,7 @@
 import { Component, Prop, Vue, PropSync, Ref } from "vue-property-decorator";
 import { State, Action, Getter, Mutation } from "vuex-class";
 import { cloneDeep, values, every, remove } from "lodash";
-import {menuTabChangeEvents , MENUTABCHANGEEVENT} from '@/events/Events'
+import { menuTabChangeEvents, MENUTABCHANGEEVENT } from "@/events/Events";
 
 @Component({
   name: "side-menu",
@@ -108,26 +109,33 @@ export default class SideMenu extends Vue {
   };
   tree = [];
   items = [];
-  active:Array<any> = [];
+  active: Array<any> = [];
+
+  currentTabItem = null;
 
   created() {
     this.treeItem = this.getMenuItem;
-    menuTabChangeEvents.$on(MENUTABCHANGEEVENT.TABMENUCHANGE,(item:any) => {
-     
-     console.log('아이템 체인지')
-     console.log(item)
-     this.active = [item]
-
-    })
+    menuTabChangeEvents.$on(MENUTABCHANGEEVENT.TABMENUCHANGE, (item: any) => {
+      console.log("아이템 체인지");
+      //  console.log(item)
+      this.currentTabItem = item;
+      this.active = [item];
+    });
   }
 
   onItemChange(item: any) {
-
-    console.log('체인지.....')
-    console.log(this.active)
     const [selectedItem] = item;
+    if (selectedItem == undefined) {
+      this.active = [this.currentTabItem];
+      //this.sync_drawer = false;
+      return;
+    }
+    // console.log('체인지.....')
+    // console.log(this.active)
+    // console.log(selectedItem)
+    this.currentTabItem = selectedItem;
     this.addMenuItem(selectedItem);
-    this.sync_drawer = false;
+    //this.sync_drawer = false;
   }
 
   onMenuClick() {
@@ -142,14 +150,18 @@ export default class SideMenu extends Vue {
     let cloneItem = cloneDeep(this.getMenuItem);
 
     //console.log(cloneItem[2])
-    let temp:Array<any> = []
+    let temp: Array<any> = [];
     let fn = (item: any, parent: any) => {
       if ("children" in item) {
         item.children.forEach((d: any) => {
           fn(d, item.children);
         });
       } else {
-        if (String(item.name).toLowerCase().indexOf(String(this.search_keyword).toLowerCase()) == -1) {
+        if (
+          String(item.name)
+            .toLowerCase()
+            .indexOf(String(this.search_keyword).toLowerCase()) == -1
+        ) {
           let idx = 0;
 
           let find = parent.some((dt: any, i: number) => {
@@ -162,11 +174,9 @@ export default class SideMenu extends Vue {
           });
 
           if (find) {
-             
-           
           }
-        }else {
-          temp.push(item)
+        } else {
+          temp.push(item);
         }
         return;
       }
@@ -176,22 +186,20 @@ export default class SideMenu extends Vue {
       fn(d, cloneItem);
     });
 
-    if(String(this.search_keyword).trim() == '') {
-      this.treeItem = this.getMenuItem
-     
-     setTimeout(() => {
-        this.openAll = true
-         this.tree_menu.updateAll(this.openAll);
-     }, 100);
- 
-    }else {
-      
-      console.log(temp)
+    if (String(this.search_keyword).trim() == "") {
+      this.treeItem = this.getMenuItem;
 
-      this.treeItem = temp
+      setTimeout(() => {
+        this.openAll = true;
+        this.tree_menu.updateAll(this.openAll);
+      }, 100);
+    } else {
+      console.log(temp);
+
+      this.treeItem = temp;
     }
 
-   //this.treeItem = temp
+    //this.treeItem = temp
     //  let fn = (item:any) => {
 
     //     if('children' in item) {
