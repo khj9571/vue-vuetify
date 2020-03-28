@@ -2,7 +2,7 @@
   <v-container class="fill-height" fluid>
     <v-layout column>
       <v-row justify="center" align="start" dense>
-        <v-daterange :type="type" :fromDt.sync="fromDt" :toDt.sync="toDt" />
+        <v-daterange :type="type" :fromDt.sync="fromDt" :toDt.sync="toDt" @dateChange="onDateChange" />
       </v-row>
       <v-row>
         <v-col cols="12">
@@ -49,6 +49,10 @@ export default class DateRangePicker extends Vue {
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
   }
 
+ onDateChange(evt:any) {
+    
+    console.log(evt)
+ }
 
   
 }

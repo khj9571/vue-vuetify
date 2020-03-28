@@ -54,7 +54,7 @@
 </style>
 
 <script lang="ts">
-import { Component, Prop, PropSync, Watch, Vue } from "vue-property-decorator";
+import { Component, Prop, PropSync, Watch, Vue, Emit } from "vue-property-decorator";
 import moment from "moment";
 import { cloneDeep, values, every } from "lodash";
 enum Type {
@@ -180,7 +180,21 @@ export default class VDateRange extends Vue {
 
   @Watch("selectedChange", { immediate: false, deep: true })
   onSelectedChanged(val: any, oldVal: any) {
-    if (every(values(val), Boolean)) this.isShow = false;
+
+   if(this.isRange) {
+      if (every(values(val), Boolean)) {
+      this.isShow = false;
+      this.dateChange({a:'1',b:'2'})
+    }
+   }else {
+      this.isShow = false;
+      this.dateChange('abc')
+   }
+  }
+
+  @Emit("dateChange")
+  dateChange(value:any) {
+    return value
   }
 
   private fromDate: string = moment().format("YYYY-MM-DD");
